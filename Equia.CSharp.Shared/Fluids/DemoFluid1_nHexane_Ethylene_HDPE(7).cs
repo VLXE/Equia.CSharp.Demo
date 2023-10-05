@@ -2,13 +2,17 @@
 
 namespace Equia.CSharp.Shared.Fluids
 {
-  public class Fluid_nHexane_Ethylene_HDPE7
+  /// <summary>
+  /// Demo fluid 1
+  /// Example of fluid with two solvents and one monodisperse polymer with 7 pseudo components
+  /// </summary>
+  public class DemoFluid1_nHexane_Ethylene_HDPE7
   {
     public static ApiFluid Create()
     {
       var fluid = new ApiFluid
       {
-        Name = "nHexane + Ethylene + HDPE(7) - API C#",
+        Name = "nHexane + Ethylene + HDPE(7)",
         Comment = "Used by API C# demo",
         Eos = "PC-SAFT",
         PropertyReferencePoint = "Original",

@@ -1,14 +1,18 @@
 ﻿using Equia.Api.Shared.Client;
 using Equia.Api.Shared.Fluids.AddFluid;
-using Equia.Api.Shared.Utility;
 using Equia.CSharp.Shared;
 using Equia.CSharp.Shared.Fluids;
 
 namespace Equia.CSharp.AddFluid
 {
-  internal static class FluidSample
+  /// <summary>
+  /// Example of how to add a fluid to the cloud database
+  /// Note that the id returned is needed if the fluid is to be retrived or used in API calculations
+  /// If lost it can be found in the cloud client
+  /// </summary>
+  static class AddFluidSample
   {
-    public static async Task RunFluidSampleAsync()
+    public static async Task ExecuteAsync()
     {
       try
       {
@@ -19,8 +23,8 @@ namespace Equia.CSharp.AddFluid
 
         if (result.Success)
           PrintCalculationResult(result.FluidId.Value);
-        else if (result.ExceptionInfo is not null)
-          PrintExceptionInfo(result.ExceptionInfo);
+        else
+          HandleExceptions.PrintExceptionInfo(result.ExceptionInfo);
 
         Console.WriteLine(string.Empty);
         Console.WriteLine("Press any key to close");
@@ -44,19 +48,10 @@ namespace Equia.CSharp.AddFluid
     static ApiAddFluidInput CreateInput(ApiEquiaClient client)
     {
       var input = client.AddFluidInput();
-      input.Fluid = Fluid_nHexane_Ethylene_HDPE7.Create();
+      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
       input.UserId = new Guid(SharedSettings.UserId);
 
       return input;
-    }
-
-    static void PrintExceptionInfo(ApiExceptionInfo exceptionInfo)
-    {
-      PrintLine($"Date: {exceptionInfo.Date}");
-      PrintLine($"Message Type: {exceptionInfo.MessageType}");
-      PrintLine($"Message: {exceptionInfo.Message}");
-      PrintLine();
-      PrintLine($"Stack Trace: {exceptionInfo.StackTrace}");
     }
 
     static void PrintValue(string input) => Console.Write(input.PadRight(25));

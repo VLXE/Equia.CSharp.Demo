@@ -2,15 +2,19 @@
 using Equia.Api.Shared.ApiOutput.Phasediagram;
 using Equia.Api.Shared.Calculations.Phasediagram;
 using Equia.Api.Shared.Client;
-using Equia.Api.Shared.Utility;
 using Equia.CSharp.Shared;
 using Equia.CSharp.Shared.Fluids;
 
 namespace Equia.CSharp.PhaseDiagramSample
 {
-  internal static class PhaseDiagramSample
+  /// <summary>
+  /// Calculates entire phasediagram.
+  /// VLE and LLE line is always included. But here we also ask for SLE, SLVE and VLLE part.
+  /// We skip the spinodal curve
+  /// </summary>
+  static class PhaseDiagramSample
   {
-    public static async Task RunPhaseDiagramSampleAsync()
+    public static async Task ExecuteAsync()
     {
       try
       {
@@ -20,11 +24,9 @@ namespace Equia.CSharp.PhaseDiagramSample
         var result = await client.CallPhasediagramStandardAsync(input);
 
         if (result.Success && result.Curve is not null)
-        {
           PrintPhaseDiagramResult(result.Curve);
-        }
-        else if (result.ExceptionInfo is not null)
-          PrintExceptionInfo(result.ExceptionInfo);
+        else
+          HandleExceptions.PrintExceptionInfo(result.ExceptionInfo);
       }
       catch (Exception ex)
       {
@@ -41,22 +43,16 @@ namespace Equia.CSharp.PhaseDiagramSample
     static ApiPhasediagramCalculationInput CreateInput(ApiEquiaClient client)
     {
       var input = client.GetPhasediagamStandardInput();
-      input.Fluid = Fluid_nHexane_Ethylene_HDPE7.Create();
+      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
+      input.SLE = true;
+      input.SLVE = true;
       input.VLLE = true;
+      input.Spinodal = false;
       input.Components = new List<ApiCalculationComposition> {
                 new ApiCalculationComposition { Mass = 0.78 },
                 new ApiCalculationComposition { Mass = 0.02 },
                 new ApiCalculationComposition { Mass = 0.2 } };
       return input;
-    }
-
-    static void PrintExceptionInfo(ApiExceptionInfo exceptionInfo)
-    {
-      PrintLine($"Date: {exceptionInfo.Date}");
-      PrintLine($"Message Type: {exceptionInfo.MessageType}");
-      PrintLine($"Message: {exceptionInfo.Message}");
-      PrintLine();
-      PrintLine($"Stack Trace: {exceptionInfo.StackTrace}");
     }
 
     static void PrintValue(double input) => PrintValue(input.ToString());

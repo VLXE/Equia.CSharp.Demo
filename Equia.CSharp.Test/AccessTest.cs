@@ -7,7 +7,7 @@ using Equia.CSharp.Shared.Fluids;
 namespace Equia.CSharp.Test
 {
   [TestFixture]
-  internal class AccessTest
+  class AccessTest
   {
     [Test]
     public void WrongUserId()
@@ -17,7 +17,7 @@ namespace Equia.CSharp.Test
       var client = new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.UserId, SharedSettings.AccessSecret);
 
       var input = client.GetFlashInput();
-      input.Fluid = Fluid_nHexane_Ethylene_HDPE7.Create();
+      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
       input.Temperature = 490;
       input.Pressure = 30;
       input.FlashType = "Fixed Temperature/Pressure";

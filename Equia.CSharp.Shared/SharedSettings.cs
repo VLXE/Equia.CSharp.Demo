@@ -13,7 +13,9 @@
     /// Access secret as provided by VLXE
     /// </summary>
     public static string AccessSecret = "";
-
+    /// <summary>
+    /// Url to the online API server
+    /// </summary>
     public static string ApiUrl = "https://api.equia.com/";
   }
 }

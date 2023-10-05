@@ -1,13 +1,15 @@
 ﻿using Equia.Api.Shared.Client;
 using Equia.Api.Shared.Fluids.FluidParts;
-using Equia.Api.Shared.Utility;
 using Equia.CSharp.Shared;
 
 namespace Equia.CSharp.RequestFluidSample
 {
-  internal static class RequestFluidSample
+  /// <summary>
+  /// Example of how a fluid can be retrived from the cloud database
+  /// </summary>
+  static class GetFluidSample
   {
-    public static async Task RunRequestFluidSampleAsync()
+    public static async Task ExecuteAsync()
     {
       try
       {
@@ -19,8 +21,8 @@ namespace Equia.CSharp.RequestFluidSample
 
         if (result.Success && result.Fluid is not null)
           PrintFluidInfo(result.Fluid);
-        else if (result.ExceptionInfo is not null)
-          PrintExceptionInfo(result.ExceptionInfo);
+        else
+          HandleExceptions.PrintExceptionInfo(result.ExceptionInfo);
 
         Console.WriteLine(string.Empty);
         Console.WriteLine("Press any key to close");
@@ -39,15 +41,6 @@ namespace Equia.CSharp.RequestFluidSample
     static ApiEquiaClient CreateClient()
     {
       return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.UserId, SharedSettings.AccessSecret);
-    }
-
-    static void PrintExceptionInfo(ApiExceptionInfo exceptionInfo)
-    {
-      PrintLine($"Date: {exceptionInfo.Date}");
-      PrintLine($"Message Type: {exceptionInfo.MessageType}");
-      PrintLine($"Message: {exceptionInfo.Message}");
-      PrintLine(string.Empty);
-      PrintLine($"Stack Trace: {exceptionInfo.StackTrace}");
     }
 
     static void PrintLine(string input) => Console.WriteLine(input);
