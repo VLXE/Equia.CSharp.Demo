@@ -79,11 +79,31 @@ namespace Equia.CSharp.UnflashedProperties
       PrintValue($"Pressure [{result.Pressure.Units}]");
       PrintValue(result.Pressure.Value);
       PrintLine();
-      PrintValue($"Volume [{result.Volume.Units}]");
-      PrintValue(result.Volume.Value);
       PrintLine();
 
+      var residual = result.Residual;
+      var ideal = result.Ideal;
+      var sum = result.Sum;
+
+      Console.WriteLine(GetLine("Name", "Residual", "Ideal", "Sum"));
+      Console.WriteLine(GetLine($"Volume [{sum.Volume.Units}]", residual.Volume.Value, ideal.Volume.Value, sum.Volume.Value));
+      Console.WriteLine(GetLine($"Enthalpy [{sum.Enthalpy.Units}]", residual.Enthalpy.Value, ideal.Enthalpy.Value, sum.Enthalpy.Value));
+      Console.WriteLine(GetLine($"Entropy [{sum.Entropy.Units}]", residual.Entropy.Value, ideal.Entropy.Value, sum.Entropy.Value));
+      Console.WriteLine(GetLine($"Cp [{sum.Cp.Units}]", residual.Cp.Value, ideal.Cp.Value, sum.Cp.Value));
+      Console.WriteLine(GetLine($"Cv [{sum.Cv.Units}]", residual.Cv.Value, ideal.Cv.Value, sum.Cv.Value));
+      Console.WriteLine(GetLine($"GibbsEnergy [{sum.GibbsEnergy.Units}]", residual.GibbsEnergy.Value, ideal.GibbsEnergy.Value, sum.GibbsEnergy.Value));
+      Console.WriteLine(GetLine($"InternalEnergy [{sum.InternalEnergy.Units}]", residual.InternalEnergy.Value, ideal.InternalEnergy.Value, sum.InternalEnergy.Value));
+      Console.WriteLine(GetLine($"HelmholtzEnergy [{sum.HelmholtzEnergy.Units}]", residual.HelmholtzEnergy.Value, ideal.HelmholtzEnergy.Value, sum.HelmholtzEnergy.Value));
     }
 
+    static string GetLine(string name, string residual, string ideal, string sum)
+    {
+      return name.PadRight(25) + residual.PadRight(25) + ideal.PadRight(25) + sum.PadRight(25);
+    }
+
+    static string GetLine(string name, double residual, double ideal, double sum)
+    {
+      return GetLine(name, residual.ToString(), ideal.ToString(), sum.ToString());
+    }
   }
 }

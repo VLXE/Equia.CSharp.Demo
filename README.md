@@ -18,6 +18,27 @@ Please contact VLXE to obtain access.
 You will then recieve a User Id and a access secret.  
 Once you have the values edit the file: SharedSettings.cs found in the project: 'Equia.CSharp.Shared'    
 
+```
+  /// <summary>
+  /// Shared settings between projects
+  /// </summary>
+  public class SharedSettings
+  {
+    /// <summary>
+    /// UserId as provided by VLXE
+    /// </summary>
+    public static string UserId = "Enter your userid here";
+    /// <summary>
+    /// Access secret as provided by VLXE
+    /// </summary>
+    public static string AccessSecret = "Enter your access secret here";
+    /// <summary>
+    /// Url to the Equia API server
+    /// </summary>
+    public static string ApiUrl = "https://api.equia.com/";
+  }
+```
+
 You can get these values by contacting us at [VLXE](https://vlxe.com/contact)
 
 !!! Do not share or expose these values or commit them to a public repository !!!

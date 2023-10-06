@@ -14,7 +14,7 @@
     /// </summary>
     public static string AccessSecret = "";
     /// <summary>
-    /// Url to the online API server
+    /// Url to the Equia API server
     /// </summary>
     public static string ApiUrl = "https://api.equia.com/";
   }
