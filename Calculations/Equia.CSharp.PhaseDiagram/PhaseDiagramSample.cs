@@ -37,7 +37,7 @@ namespace Equia.CSharp.PhaseDiagramSample
 
     static ApiEquiaClient CreateClient()
     {
-      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.UserId, SharedSettings.AccessSecret);
+      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
     }
 
     static ApiPhasediagramCalculationInput CreateInput(ApiEquiaClient client)

@@ -12,9 +12,8 @@ namespace Equia.CSharp.Test
     [Test]
     public void WrongUserId()
     {
-      SharedSettings.AccessSecret = "Does not work";
-      SharedSettings.UserId = Guid.NewGuid().ToString();
-      var client = new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.UserId, SharedSettings.AccessSecret);
+      SharedSettings.AccessKey = "Does not work";
+      var client = new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
 
       var input = client.GetFlashInput();
       input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();

@@ -42,7 +42,7 @@ namespace Equia.CSharp.CloudPointSample
 
     static ApiEquiaClient CreateClient()
     {
-      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.UserId, SharedSettings.AccessSecret);
+      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
     }
 
     static ApiCloudPointCalculationInput CreateInput(ApiEquiaClient client)

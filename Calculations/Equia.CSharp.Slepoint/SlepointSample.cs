@@ -43,7 +43,7 @@ namespace Equia.CSharp.Slepoint
 
     static ApiEquiaClient CreateClient()
     {
-      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.UserId, SharedSettings.AccessSecret);
+      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
     }
 
     static ApiSlePointCalculationInput CreateInput(ApiEquiaClient client)

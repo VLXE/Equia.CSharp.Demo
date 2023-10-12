@@ -15,7 +15,7 @@ The NuGet package [Equia.Api.Shared](https://www.nuget.org/packages/Equia.Api.Sh
 ## Before you start
 
 Please contact VLXE to obtain access.  
-You will then recieve a User Id and a access secret.  
+You will then recieve a accesskey.  
 Once you have the values edit the file: SharedSettings.cs found in the project: 'Equia.CSharp.Shared'    
 
 ```
@@ -25,13 +25,9 @@ Once you have the values edit the file: SharedSettings.cs found in the project: 
   public class SharedSettings
   {
     /// <summary>
-    /// UserId as provided by VLXE
+    /// Access key as provided by VLXE
     /// </summary>
-    public static string UserId = "Enter your userid here";
-    /// <summary>
-    /// Access secret as provided by VLXE
-    /// </summary>
-    public static string AccessSecret = "Enter your access secret here";
+    public static string AccessKey = "Enter your access key here";
     /// <summary>
     /// Url to the Equia API server
     /// </summary>
@@ -41,7 +37,7 @@ Once you have the values edit the file: SharedSettings.cs found in the project: 
 
 You can get these values by contacting us at [VLXE](https://vlxe.com/contact)
 
-!!! Do not share or expose these values or commit them to a public repository !!!
+!!! Do not share or expose this value or commit them to a public repository !!!
 
 ## Run any sample
 

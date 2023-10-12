@@ -42,14 +42,13 @@ namespace Equia.CSharp.AddFluid
 
     static ApiEquiaClient CreateClient()
     {
-      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.UserId, SharedSettings.AccessSecret);
+      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
     }
 
     static ApiAddFluidInput CreateInput(ApiEquiaClient client)
     {
       var input = client.AddFluidInput();
       input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
-      input.UserId = new Guid(SharedSettings.UserId);
 
       return input;
     }

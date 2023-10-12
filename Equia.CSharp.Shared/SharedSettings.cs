@@ -6,13 +6,9 @@
   public class SharedSettings
   {
     /// <summary>
-    /// UserId as provided by VLXE
+    /// Access key as provided by VLXE
     /// </summary>
-    public static string UserId = "";
-    /// <summary>
-    /// Access secret as provided by VLXE
-    /// </summary>
-    public static string AccessSecret = "";
+    public static string AccessKey = string.Empty;
     /// <summary>
     /// Url to the Equia API server
     /// </summary>
