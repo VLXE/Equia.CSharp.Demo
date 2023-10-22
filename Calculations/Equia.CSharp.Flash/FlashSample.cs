@@ -1,5 +1,4 @@
 ﻿using Equia.Api.Shared.ApiInput;
-using Equia.Api.Shared.ApiOutput.Point;
 using Equia.Api.Shared.Calculations.Flash;
 using Equia.Api.Shared.Client;
 using Equia.CSharp.Shared;

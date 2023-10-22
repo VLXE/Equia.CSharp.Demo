@@ -7,8 +7,9 @@ namespace Equia.CSharp.Shared
   /// </summary>
   public class SharedBase
   {
-    static void PrintValue(double input) => PrintValue(input.ToString());
-    static void PrintValue(string input) => Console.Write(input.PadRight(25));
+    static void PrintValue(double input) => PrintValue(input.ToString("E6").PadLeft(22));
+    static void PrintValue(string input) => Console.Write(input.PadRight(30));
+    static void PrintValuePadLeft(string input) => Console.Write(input.PadLeft(22));
     protected void PrintLine(string input = "") => Console.WriteLine(input);
 
     /// <summary>
@@ -21,7 +22,7 @@ namespace Equia.CSharp.Shared
       PrintLine();
       PrintValue("Property");
       foreach (var phase in result.Phases)
-        PrintValue(phase.PhaseLabel);
+        PrintValuePadLeft(phase.PhaseLabel);
       PrintLine();
 
       PrintValue($"Temperature [{result.Temperature.Units}]");
@@ -107,20 +108,20 @@ namespace Equia.CSharp.Shared
 
     void PrintPolymerMoments(ApiOutputCalculationResultPoint result)
     {
-      var first_phase_moments = result.Phases[0].PolymerMoments;
-      foreach (var momentIndex in Enumerable.Range(0, first_phase_moments.Polymers.Count))
+      var firstPhase = result.Phases[0].PolymerMoments;
+      for (var momentIndex = 0; momentIndex < firstPhase.Polymers.Count; momentIndex++)
       {
-        PrintValue($"Mn ({first_phase_moments.Polymers[momentIndex].PolymerName}) [{first_phase_moments.MomentUnits}]");
+        PrintValue($"Mn ({firstPhase.Polymers[momentIndex].PolymerName}) [{firstPhase.MomentUnits}]");
         foreach (var phase in result.Phases)
           PrintValue(phase.PolymerMoments.Polymers[momentIndex].Mn);
         PrintLine();
 
-        PrintValue($"Mw ({first_phase_moments.Polymers[momentIndex].PolymerName}) [{first_phase_moments.MomentUnits}]");
+        PrintValue($"Mw ({firstPhase.Polymers[momentIndex].PolymerName}) [{firstPhase.MomentUnits}]");
         foreach (var phase in result.Phases)
           PrintValue(phase.PolymerMoments.Polymers[momentIndex].Mw);
         PrintLine();
 
-        PrintValue($"Mz ({first_phase_moments.Polymers[momentIndex].PolymerName}) [{first_phase_moments.MomentUnits}]");
+        PrintValue($"Mz ({firstPhase.Polymers[momentIndex].PolymerName}) [{firstPhase.MomentUnits}]");
         foreach (var phase in result.Phases)
           PrintValue(phase.PolymerMoments.Polymers[momentIndex].Mz);
         PrintLine();
@@ -130,24 +131,20 @@ namespace Equia.CSharp.Shared
     void PrintPolymerDistributions(ApiOutputCalculationResultPoint result)
     {
       var firstPhase = result.Phases[0];
-      // find components with distribution (polymers)
-      foreach (var compIndex in Enumerable.Range(0, firstPhase.Composition.Composition.Components.Count))
+      for (int compIndex = 0; compIndex < firstPhase.Composition.Composition.Components.Count; compIndex++)
       {
         var component = firstPhase.Composition.Composition.Components[compIndex];
         if (component.Distribution is null || !component.Distribution.Any())
           continue;
 
-        // just print the name of the polymer on top of each phase column
         PrintValue(string.Empty);
-        foreach (var phaseIndex in Enumerable.Range(0, result.Phases.Count))
-          PrintValue(component.Name);
+        for (int phaseIndex = 0; phaseIndex < result.Phases.Count; phaseIndex++)
+          PrintValuePadLeft(component.Name);
 
-        // now print the actual distribution values for each phase
-        foreach (var distIndex in Enumerable.Range(0, component.Distribution.Count))
+        for (int distIndex = 0; distIndex < component.Distribution.Count; distIndex++)
         {
           PrintLine();
-          PrintValue(string.Empty);
-          foreach (var phaseIndex in Enumerable.Range(0, result.Phases.Count))
+          for (int phaseIndex = 0; phaseIndex < result.Phases.Count; phaseIndex++)
           {
             var distributions = result.Phases[phaseIndex].Composition.Composition.Components[compIndex].Distribution;
             if (distributions is null)
@@ -157,6 +154,8 @@ namespace Equia.CSharp.Shared
             }
 
             var distribution = distributions[distIndex];
+            if (phaseIndex == 0)
+              PrintValue(distribution.Name);
             PrintValue(distribution.Value);
           }
         }

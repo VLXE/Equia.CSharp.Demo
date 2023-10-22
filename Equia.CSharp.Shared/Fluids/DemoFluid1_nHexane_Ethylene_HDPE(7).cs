@@ -32,7 +32,17 @@ namespace Equia.CSharp.Shared.Fluids
 
         PcSaftdm = 0.03548,
         PcSaftSigma0 = 3.7983,
-        PcSaftEpsilon = 236.77
+        PcSaftEpsilon = 236.77,
+
+        IdealGasEnthalpyOfFormation = -1937.212679,
+
+        PcSaftCpIgDipprC0 = 1.21148319,
+        PcSaftCpIgDipprC1 = 4.088175553,
+        PcSaftCpIgDipprC2 = 1694.6,
+        PcSaftCpIgDipprC3 = 2.749045667,
+        PcSaftCpIgDipprC4 = 761.6,
+        PcSaftCpIgDipprC5 = 200,
+        PcSaftCpIgDipprC6 = 1500,
       };
 
       var ethylene = new ApiFluidStandardComponent
@@ -47,7 +57,18 @@ namespace Equia.CSharp.Shared.Fluids
 
         PcSaftdm = 0.0567914,
         PcSaftSigma0 = 3.445,
-        PcSaftEpsilon = 176.47
+        PcSaftEpsilon = 176.47,
+
+        IdealGasEnthalpyOfFormation = 1871.80339,
+
+        PcSaftCpIgDipprC0 = 1.189883778,
+        PcSaftCpIgDipprC1 = 3.37894198,
+        PcSaftCpIgDipprC2 = 1596,
+        PcSaftCpIgDipprC3 = 1.964128105,
+        PcSaftCpIgDipprC4 = 740.8,
+        PcSaftCpIgDipprC5 = 60,
+        PcSaftCpIgDipprC6 = 1500
+
       };
 
       var hdpe7 = new ApiFluidPolymerComponent
@@ -66,7 +87,18 @@ namespace Equia.CSharp.Shared.Fluids
         SleC = 0.4,
         SleHu = 8220.0,
         SleDensityAmorphous = 0.853,
-        SleDensityCrystalline = 1.004
+        SleDensityCrystalline = 1.004,
+
+        IdealGasEnthalpyOfFormation = -1613.2549,
+
+        PcSaftCpIgPolyC0 = 0.81694,
+        PcSaftCpIgPolyC1 = -0.00030569,
+        PcSaftCpIgPolyC2 = 0.000015706,
+        PcSaftCpIgPolyC3 = -2.1058E-08,
+        PcSaftCpIgPolyC4 = 8.5078E-12,
+        PcSaftCpIgPolyC5 = 0,
+        PcSaftCpIgPolyC6 = 200,
+        PcSaftCpIgPolyC7 = 1000
       };
 
       hdpe7.Blocks.Add(block);

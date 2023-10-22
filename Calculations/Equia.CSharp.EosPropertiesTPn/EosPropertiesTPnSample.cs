@@ -1,26 +1,26 @@
 ﻿using Equia.Api.Shared.ApiInput;
-using Equia.Api.Shared.ApiOutput.Property;
-using Equia.Api.Shared.Calculations.UnflashedProperties;
+using Equia.Api.Shared.ApiOutput.Properties;
+using Equia.Api.Shared.Calculations.Properties;
 using Equia.Api.Shared.Client;
 using Equia.CSharp.Shared;
 using Equia.CSharp.Shared.Fluids;
 
-namespace Equia.CSharp.UnflashedProperties
+namespace Equia.CSharp.EosPropertiesTPn
 {
   /// <summary>
   /// Example of obtaining unflashed properties
   /// Unflashed means that all properties are from the EoS  directly. No stability analysis is performed
   /// </summary>
-  static class UnflashedPropertiesSample
+  static class EosPropertiesTPnSample
   {
-    public static async Task ExecuteAsync()
+    public static void Execute()
     {
       try
       {
         var client = CreateClient();
         var input = CreateInput(client);
 
-        var result = await client.CallUnFlashedPropertiesAsync(input);
+        var result = client.CallEosPropertiesTPnAsync(input).Result;
 
         if (result.Success && result.Point is not null)
           PrintCalculationResult(result.Point);
@@ -46,14 +46,13 @@ namespace Equia.CSharp.UnflashedProperties
       return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
     }
 
-    static ApiUnflashedPropertyCalculationInput CreateInput(ApiEquiaClient client)
+    static ApiEosPropertiesTPnInput CreateInput(ApiEquiaClient client)
     {
-      var input = client.GetUnFlashedPropertyInput();
+      var input = client.GetEosPropertiesTPnInput();
       input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
       input.Temperature = 490;
       input.Pressure = 30;
       input.VolumeType = "Auto";
-      input.CalculationType = "Fixed Temperature/Pressure";
       input.Components = new List<ApiCalculationComposition> {
                 new ApiCalculationComposition { Mass = 0.78 },
                 new ApiCalculationComposition { Mass = 0.02 },
@@ -67,7 +66,7 @@ namespace Equia.CSharp.UnflashedProperties
     static void PrintValue(string input) => Console.Write(input.PadRight(25));
     static void PrintLine(string input = "") => Console.WriteLine(input);
 
-    static void PrintCalculationResult(ApiOutputUnflashedPropertyResult result)
+    static void PrintCalculationResult(ApiEosPropertiesResult result)
     {
       PrintLine();
       PrintValue("Property");
