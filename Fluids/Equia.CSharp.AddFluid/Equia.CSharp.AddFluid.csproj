@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Equia.Api.Shared" Version="0.0.6" />
+    <PackageReference Include="Equia.Api.Shared" Version="0.0.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Equia.CSharp.Shared\Equia.CSharp.Shared.csproj" />
+    <ProjectReference Include="..\..\Shared\Equia.CSharp.Shared\Equia.CSharp.Shared.csproj" />
   </ItemGroup>
-
+  
 </Project>

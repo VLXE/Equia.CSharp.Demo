@@ -8,7 +8,7 @@
     /// <summary>
     /// Access key as provided by VLXE
     /// </summary>
-    public static string AccessKey = string.Empty;
+    public static string AccessKey = "";
     /// <summary>
     /// Url to the Equia API server
     /// </summary>
