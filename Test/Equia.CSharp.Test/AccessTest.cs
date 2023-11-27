@@ -21,14 +21,14 @@ namespace Equia.CSharp.Test
       input.Pressure = 30;
       input.FlashType = "Fixed Temperature/Pressure";
       input.Components = new List<ApiCalculationComposition> {
-                new ApiCalculationComposition { Mass = 0.78 },
-                new ApiCalculationComposition { Mass = 0.02 },
-                new ApiCalculationComposition { Mass = 0.20 },
+                new() { Mass = 0.78 },
+                new() { Mass = 0.02 },
+                new() { Mass = 0.20 },
       };
 
       var exception = Assert.ThrowsAsync<HttpRequestException>(async () => await client.CallFlashAsync(input));
 
-      Assert.AreEqual("Response status code does not indicate success: 401 (Unauthorized).", exception?.Message);
+      Assert.That("Response status code does not indicate success: 401 (Unauthorized).", Is.EqualTo(exception?.Message));
     }
 
   }
