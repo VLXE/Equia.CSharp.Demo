@@ -1,4 +1,5 @@
 ﻿using Equia.Api.Shared.ApiOutput.Point;
+using Equia.Api.Shared.Client;
 
 namespace Equia.CSharp.Shared
 {
@@ -10,14 +11,20 @@ namespace Equia.CSharp.Shared
     static void PrintValue(double input) => PrintValue(input.ToString("E6").PadLeft(22));
     static void PrintValue(string input) => Console.Write(input.PadRight(30));
     static void PrintValuePadLeft(string input) => Console.Write(input.PadLeft(22));
-    protected void PrintLine(string input = "") => Console.WriteLine(input);
+    protected static void PrintLine(string input = "") => Console.WriteLine(input);
+
+    protected static ApiEquiaClient CreateClient()
+    {
+      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
+    }
+
 
     /// <summary>
     /// Write result to console.
     /// Is shared between several calculations since output format is the same in VLXE
     /// </summary>
     /// <param name="result"></param>
-    protected void PrintCalculationResult(ApiOutputCalculationResultPoint result)
+    protected static void PrintCalculationResult(ApiOutputCalculationResultPoint result)
     {
       PrintLine();
       PrintValue("Property");
@@ -38,7 +45,7 @@ namespace Equia.CSharp.Shared
       PrintPolymerDistributions(result);
     }
 
-    void PrintComposition(ApiOutputCalculationResultPoint result)
+    static void PrintComposition(ApiOutputCalculationResultPoint result)
     {
       PrintLine();
       PrintLine("Components");
@@ -52,7 +59,7 @@ namespace Equia.CSharp.Shared
       }
     }
 
-    void PrintProperties(ApiOutputCalculationResultPoint result)
+    static void PrintProperties(ApiOutputCalculationResultPoint result)
     {
       var firstPhase = result.Phases[0];
       PrintLine();
@@ -106,7 +113,7 @@ namespace Equia.CSharp.Shared
       PrintLine();
     }
 
-    void PrintPolymerMoments(ApiOutputCalculationResultPoint result)
+    static void PrintPolymerMoments(ApiOutputCalculationResultPoint result)
     {
       var firstPhase = result.Phases[0].PolymerMoments;
       for (var momentIndex = 0; momentIndex < firstPhase.Polymers.Count; momentIndex++)
@@ -128,7 +135,7 @@ namespace Equia.CSharp.Shared
       }
     }
 
-    void PrintPolymerDistributions(ApiOutputCalculationResultPoint result)
+    static void PrintPolymerDistributions(ApiOutputCalculationResultPoint result)
     {
       var firstPhase = result.Phases[0];
       for (int compIndex = 0; compIndex < firstPhase.Composition.Composition.Components.Count; compIndex++)

@@ -49,9 +49,9 @@ namespace Equia.CSharp.PhaseDiagramSample
       input.VLLE = true;
       input.Spinodal = false;
       input.Components = new List<ApiCalculationComposition> {
-                new ApiCalculationComposition { Mass = 0.78 },
-                new ApiCalculationComposition { Mass = 0.02 },
-                new ApiCalculationComposition { Mass = 0.2 } };
+                new() { Mass = 0.78 },
+                new() { Mass = 0.02 },
+                new() { Mass = 0.2 } };
       return input;
     }
 

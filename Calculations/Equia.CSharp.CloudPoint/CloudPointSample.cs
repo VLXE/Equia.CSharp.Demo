@@ -40,11 +40,6 @@ namespace Equia.CSharp.CloudPointSample
       }
     }
 
-    static ApiEquiaClient CreateClient()
-    {
-      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
-    }
-
     static ApiCloudPointCalculationInput CreateInput(ApiEquiaClient client)
     {
       var input = client.GetCloudPointInput();
@@ -52,9 +47,9 @@ namespace Equia.CSharp.CloudPointSample
       input.Pressure = 25;
       input.PointType = "Fixed Pressure";
       input.Components = new List<ApiCalculationComposition> {
-                new ApiCalculationComposition { Mass = 0.78 },
-                new ApiCalculationComposition { Mass = 0.02 },
-                new ApiCalculationComposition { Mass = 0.2 } };
+                new() { Mass = 0.78 },
+                new() { Mass = 0.02 },
+                new() { Mass = 0.2 } };
       return input;
     }
 

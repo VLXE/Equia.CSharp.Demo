@@ -54,9 +54,9 @@ namespace Equia.CSharp.EosPropertiesTPn
       input.Pressure = 30;
       input.VolumeType = "Auto";
       input.Components = new List<ApiCalculationComposition> {
-                new ApiCalculationComposition { Mass = 0.78 },
-                new ApiCalculationComposition { Mass = 0.02 },
-                new ApiCalculationComposition { Mass = 0.20 },
+                new() { Mass = 0.78 },
+                new() { Mass = 0.02 },
+                new() { Mass = 0.20 },
       };
 
       return input;

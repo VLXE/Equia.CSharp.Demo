@@ -7,7 +7,7 @@ using Equia.CSharp.Shared.Fluids;
 namespace Equia.CSharp.Fluid
 {
   /// <summary>
-  /// Example of how to add a fluid to the cloud database
+  /// Example of how to add/get/delete a fluid in the Equia database
   /// Note that the id returned is needed if the fluid is to be retrived or used in API calculations
   /// If lost it can be found in the cloud client
   /// </summary>
@@ -97,7 +97,6 @@ namespace Equia.CSharp.Fluid
       return input;
     }
 
-    static void PrintValue(string input) => Console.Write(input.PadRight(25));
     static void PrintLine(string input = "") => Console.WriteLine(input);
 
     static void PrintFluidResult(Guid fluidId)

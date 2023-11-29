@@ -39,11 +39,6 @@ namespace Equia.CSharp.FlashSample
       }
     }
 
-    static ApiEquiaClient CreateClient()
-    {
-      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
-    }
-
     static ApiFlashCalculationInput CreateInput(ApiEquiaClient client)
     {
       var input = client.GetFlashInput();
@@ -52,9 +47,9 @@ namespace Equia.CSharp.FlashSample
       input.Pressure = 30;
       input.FlashType = "Fixed Temperature/Pressure";
       input.Components = new List<ApiCalculationComposition> {
-                new ApiCalculationComposition { Mass = 0.78 },
-                new ApiCalculationComposition { Mass = 0.02 },
-                new ApiCalculationComposition { Mass = 0.20 },
+                new() { Mass = 0.78 },
+                new() { Mass = 0.02 },
+                new() { Mass = 0.20 },
       };
 
       return input;
