@@ -48,6 +48,7 @@ namespace Equia.CSharp.PhaseDiagramSample
       input.SLVE = true;
       input.VLLE = true;
       input.Spinodal = false;
+      input.Units = "C(In,Massfraction);C(Out,Massfraction);T(In,Celsius);T(Out,Celsius);P(In,Bar);P(Out,Bar);H(In,kJ/Kg);H(Out,kJ/Kg);S(In,kJ/(Kg Kelvin));S(Out,kJ/(Kg Kelvin));Cp(In,kJ/(Kg Kelvin));Cp(Out,kJ/(Kg Kelvin));Viscosity(In,centiPoise);Viscosity(Out,centiPoise);Surfacetension(In,N/m);Surfacetension(Out,N/m)";
       input.Components = new List<ApiCalculationComposition> {
                 new() { Mass = 0.78 },
                 new() { Mass = 0.02 },
