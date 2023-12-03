@@ -43,7 +43,7 @@ namespace Equia.CSharp.CloudPointSample
     static ApiCloudPointCalculationInput CreateInput(ApiEquiaClient client)
     {
       var input = client.GetCloudPointInput();
-      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
+      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.Pressure = 25;
       input.Units = "C(In,Massfraction);C(Out,Massfraction);T(In,Celsius);T(Out,Celsius);P(In,Bar);P(Out,Bar);H(In,kJ/Kg);H(Out,kJ/Kg);S(In,kJ/(Kg Kelvin));S(Out,kJ/(Kg Kelvin));Cp(In,kJ/(Kg Kelvin));Cp(Out,kJ/(Kg Kelvin));Viscosity(In,centiPoise);Viscosity(Out,centiPoise);Surfacetension(In,N/m);Surfacetension(Out,N/m)";
       input.PointType = "Fixed Pressure";

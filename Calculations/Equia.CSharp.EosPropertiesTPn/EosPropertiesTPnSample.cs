@@ -49,7 +49,7 @@ namespace Equia.CSharp.EosPropertiesTPn
     static ApiEosPropertiesTPnInput CreateInput(ApiEquiaClient client)
     {
       var input = client.GetEosPropertiesTPnInput();
-      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
+      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.Temperature = 490;
       input.Pressure = 30;
       input.VolumeType = "Auto";

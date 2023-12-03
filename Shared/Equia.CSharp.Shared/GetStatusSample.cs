@@ -39,11 +39,6 @@ namespace Equia.CSharp.Shared
       }
     }
 
-    static ApiEquiaClient CreateClient()
-    {
-      return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
-    }
-
     static ApiStatusInput CreateInput(ApiEquiaClient client)
     {
       var input = client.GetStatusInput();

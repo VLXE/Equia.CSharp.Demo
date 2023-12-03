@@ -32,8 +32,8 @@ namespace Equia.CSharp.Fluid
           FinishUp();
           return;
         }
-        if(await GetFluid(client, resultAdd))
-          await DeleteFluid(client, resultAdd);
+        if(await GetFluid(client, resultAdd.FluidId.Value))
+          await DeleteFluid(client, resultAdd.FluidId.Value);
 
         FinishUp();
       }
@@ -54,10 +54,10 @@ namespace Equia.CSharp.Fluid
       Console.ReadKey();
     }
 
-    static async Task<bool> GetFluid(ApiEquiaClient client, ApiAddFluidOutput resultAdd)
+    static async Task<bool> GetFluid(ApiEquiaClient client, Guid fluidId)
     {
       var inputGet = client.GetFluidInput();
-      inputGet.FluidId = resultAdd.FluidId.Value;
+      inputGet.FluidId = fluidId;
 
       var resultGet = await client.CallGetFluidAsync(inputGet);
 
@@ -70,10 +70,10 @@ namespace Equia.CSharp.Fluid
       return false;
     }
 
-    static async Task DeleteFluid(ApiEquiaClient client, ApiAddFluidOutput resultAdd)
+    static async Task DeleteFluid(ApiEquiaClient client, Guid fluidId)
     {
       var inputDelete = client.DeleteFluidInput();
-      inputDelete.FluidId = resultAdd.FluidId.Value;
+      inputDelete.FluidId = fluidId;
 
       var resultDelete = await client.CallDeleteFluidAsync(inputDelete);
 
@@ -92,7 +92,7 @@ namespace Equia.CSharp.Fluid
     static ApiAddFluidInput CreateAddInput(ApiEquiaClient client)
     {
       var input = client.AddFluidInput();
-      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
+      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.Fluid.Name = "FluidSample"; //Fluid names must be unique.
       return input;
     }

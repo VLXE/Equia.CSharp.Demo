@@ -8,7 +8,7 @@ namespace Equia.CSharp.Shared.Fluids
   /// </summary>
   public class DemoFluid1_nHexane_Ethylene_HDPE7
   {
-    public static ApiFluid Create()
+    public static ApiFluid GetFluid()
     {
       var fluid = new ApiFluid
       {
@@ -114,10 +114,6 @@ namespace Equia.CSharp.Shared.Fluids
       fluid.Standards.Add(nHexane);
       fluid.Standards.Add(ethylene);
       fluid.Polymers.Add(hdpe7);
-
-      fluid.Kij.Add(new ApiFluidKij { IndexI = 0, IndexJ = 1, Kija = 0.0001 });
-      fluid.Kij.Add(new ApiFluidKij { IndexI = 0, IndexJ = 2, Kija = 0.0002 });
-      fluid.Kij.Add(new ApiFluidKij { IndexI = 1, IndexJ = 2, Kija = 0.0003 });
 
       return fluid;
     }

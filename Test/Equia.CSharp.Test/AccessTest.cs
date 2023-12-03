@@ -9,14 +9,17 @@ namespace Equia.CSharp.Test
   [TestFixture]
   class AccessTest
   {
+    /// <summary>
+    /// Call API with a invalid access key. 
+    /// HTTP 401 is then returned.
+    /// </summary>
     [Test]
     public void WrongUserId()
     {
-      SharedSettings.AccessKey = "Does not work";
-      var client = new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
+      var client = new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, "Does not work");
 
       var input = client.GetFlashInput();
-      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
+      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.Temperature = 490;
       input.Pressure = 30;
       input.FlashType = "Fixed Temperature/Pressure";

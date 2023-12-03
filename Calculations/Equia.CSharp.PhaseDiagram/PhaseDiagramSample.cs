@@ -43,7 +43,7 @@ namespace Equia.CSharp.PhaseDiagramSample
     static ApiPhasediagramCalculationInput CreateInput(ApiEquiaClient client)
     {
       var input = client.GetPhasediagamStandardInput();
-      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.Create();
+      input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.SLE = true;
       input.SLVE = true;
       input.VLLE = true;

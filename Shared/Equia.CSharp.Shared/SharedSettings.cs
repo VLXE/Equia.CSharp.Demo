@@ -8,10 +8,10 @@
     /// <summary>
     /// Access key as provided by VLXE
     /// </summary>
-    public static string AccessKey = "";
+    public const string AccessKey = "";
     /// <summary>
     /// Url to the Equia API server
     /// </summary>
-    public static string ApiUrl = "https://api.equia.com/";
+    public const string ApiUrl = "https://api.equia.com/";
   }
 }
