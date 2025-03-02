@@ -1,5 +1,6 @@
 ﻿using Equia.Api.Shared.Calculations.Properties;
 using Equia.Api.Shared.Client;
+using Equia.Api.Shared.Status;
 
 namespace Equia.CSharp.Shared
 {
