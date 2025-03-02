@@ -2,7 +2,7 @@
 
 This repository contains a collection of samples showcasing some typical uses of [Equia.Api.Shared](https://www.nuget.org/packages/Equia.Api.Shared).
 
-> All samples use .NET 7.0
+> All samples use .NET 9.0
 
 ## Status
 ![Test status](https://github.com/vlxe/Equia.CSharp.Demo/actions/workflows/dotnet.yml/badge.svg)
