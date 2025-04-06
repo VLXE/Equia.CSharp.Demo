@@ -79,6 +79,14 @@ namespace Equia.CSharp.EosPropertiesTPn
       PrintValue($"Pressure [{result.Pressure.Units}]");
       PrintValue(result.Pressure.Value);
       PrintLine();
+
+      PrintValue($"Attrative Pressure [{result.AttrativePressure.Units}]");
+      PrintValue(result.AttrativePressure.Value);
+      PrintLine();
+      PrintValue($"Repulsive Pressure [{result.RepulsivePressure.Units}]");
+      PrintValue(result.RepulsivePressure.Value);
+      PrintLine();
+
       PrintLine();
 
       var residual = result.Residual;
