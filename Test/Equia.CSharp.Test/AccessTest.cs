@@ -24,9 +24,9 @@ namespace Equia.CSharp.Test
       input.Pressure = 30;
       input.FlashType = "Fixed Temperature/Pressure";
       input.Components = new List<ApiCalculationComposition> {
-                new() { Mass = 0.78 },
-                new() { Mass = 0.02 },
-                new() { Mass = 0.20 },
+                new() { Amount = 0.78 },
+                new() { Amount = 0.02 },
+                new() { Amount = 0.20 },
       };
 
       var exception = Assert.ThrowsAsync<HttpRequestException>(async () => await client.CallFlashAsync(input));

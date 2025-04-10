@@ -57,9 +57,9 @@ namespace Equia.CSharp.BatchFlashSample
         Temperature = 200, //In Celcius
         Pressure = 25, //In Bar
         Components = [
-                new() { Mass = 0.78 },
-                new() { Mass = 0.02 },
-                new() { Mass = 0.20 },
+                new() { Amount = 0.78 },
+                new() { Amount = 0.02 },
+                new() { Amount = 0.20 },
          ]
       });
       input.Points.Add(new ApiBatchFlashCalculationItem
@@ -67,9 +67,9 @@ namespace Equia.CSharp.BatchFlashSample
         Temperature = 225, //In Celcius
         Pressure = 35, //In Bar
         Components = [
-                new() { Mass = 0.88 },
-                new() { Mass = 0.02 },
-                new() { Mass = 0.10 },
+                new() { Amount = 0.88 },
+                new() { Amount = 0.02 },
+                new() { Amount = 0.10 },
          ]
       });
 
