@@ -39,19 +39,18 @@ namespace Equia.CSharp.FlashSample
       }
     }
 
-    static ApiFlashCalculationInput CreateInput(ApiEquiaClient client)
+    static ApiFlashFixedTemperaturePressureInput CreateInput(ApiEquiaClient client)
     {
-      var input = client.GetFlashInput();
+      var input = client.GetFlashFixedTemperaturePressureInput();
       input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.Temperature = 200; //In Celcius
       input.Pressure = 25; //In Bar
       input.Units = "C(In,Massfraction);C(Out,Massfraction);T(In,Celsius);T(Out,Celsius);P(In,Bar);P(Out,Bar);H(In,kJ/Kg);H(Out,kJ/Kg);S(In,kJ/(Kg Kelvin));S(Out,kJ/(Kg Kelvin));Cp(In,kJ/(Kg Kelvin));Cp(Out,kJ/(Kg Kelvin));Viscosity(In,centiPoise);Viscosity(Out,centiPoise);Surfacetension(In,N/m);Surfacetension(Out,N/m)";
-      input.FlashType = "Fixed Temperature/Pressure";
-      input.Components = new List<ApiCalculationComposition> {
+      input.Components = [
                 new() { Amount = 0.78 },
                 new() { Amount = 0.02 },
                 new() { Amount = 0.20 },
-      };
+      ];
 
       return input;
     }

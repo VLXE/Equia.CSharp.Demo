@@ -18,16 +18,15 @@ namespace Equia.CSharp.Test
     {
       var client = new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, "Does not work");
 
-      var input = client.GetFlashInput();
+      var input = client.GetFlashFixedTemperaturePressureInput();
       input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.Temperature = 490;
       input.Pressure = 30;
-      input.FlashType = "Fixed Temperature/Pressure";
-      input.Components = new List<ApiCalculationComposition> {
+      input.Components = [
                 new() { Amount = 0.78 },
                 new() { Amount = 0.02 },
                 new() { Amount = 0.20 },
-      };
+      ];
 
       var exception = Assert.ThrowsAsync<HttpRequestException>(async () => await client.CallFlashAsync(input));
 

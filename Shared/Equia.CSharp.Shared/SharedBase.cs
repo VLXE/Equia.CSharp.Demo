@@ -8,9 +8,9 @@ namespace Equia.CSharp.Shared
   /// </summary>
   public class SharedBase
   {
-    static void PrintValue(double input) => PrintValue(input.ToString("E6").PadLeft(22));
+    static void PrintValue(double input) => PrintValue(input.ToString("E6").PadLeft(30));
     static void PrintValue(string input) => Console.Write(input.PadRight(30));
-    static void PrintValuePadLeft(string input) => Console.Write(input.PadLeft(22));
+    static void PrintValuePadLeft(string input) => Console.Write(input.PadLeft(30));
     protected static void PrintLine(string input = "") => Console.WriteLine(input);
 
     protected static ApiEquiaClient CreateClient()
@@ -50,11 +50,11 @@ namespace Equia.CSharp.Shared
       PrintLine();
       PrintLine("Components");
       var firstPhase = result.Phases[0];
-      foreach (var compIndex in Enumerable.Range(0, firstPhase.Composition.Composition.Components.Count))
+      foreach (var compIndex in Enumerable.Range(0, firstPhase.Composition.Components.Count))
       {
-        PrintValue($"{firstPhase.Composition.Composition.Components[compIndex].Name} [{firstPhase.Composition.CompositionUnits}]");
+        PrintValue($"{firstPhase.Composition.Components[compIndex].Name} [{firstPhase.Composition.CompositionUnits}]");
         foreach (var phase in result.Phases)
-          PrintValue(phase.Composition.Composition.Components[compIndex].Value);
+          PrintValue(phase.Composition.Components[compIndex].Value);
         PrintLine();
       }
     }
@@ -138,9 +138,9 @@ namespace Equia.CSharp.Shared
     static void PrintPolymerDistributions(ApiOutputCalculationResultPoint result)
     {
       var firstPhase = result.Phases[0];
-      for (int compIndex = 0; compIndex < firstPhase.Composition.Composition.Components.Count; compIndex++)
+      for (int compIndex = 0; compIndex < firstPhase.Composition.Components.Count; compIndex++)
       {
-        var component = firstPhase.Composition.Composition.Components[compIndex];
+        var component = firstPhase.Composition.Components[compIndex];
         if (component.Distribution is null || !component.Distribution.Any())
           continue;
 
@@ -153,7 +153,7 @@ namespace Equia.CSharp.Shared
           PrintLine();
           for (int phaseIndex = 0; phaseIndex < result.Phases.Count; phaseIndex++)
           {
-            var distributions = result.Phases[phaseIndex].Composition.Composition.Components[compIndex].Distribution;
+            var distributions = result.Phases[phaseIndex].Composition.Components[compIndex].Distribution;
             if (distributions is null)
             {
               PrintValue(string.Empty);

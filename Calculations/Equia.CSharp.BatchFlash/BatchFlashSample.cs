@@ -46,13 +46,12 @@ namespace Equia.CSharp.BatchFlashSample
       }
     }
 
-    static ApiBatchFlashCalculationInput CreateInput(ApiEquiaClient client)
+    static ApiBatchFlashFixedTemperaturePressureInput CreateInput(ApiEquiaClient client)
     {
-      var input = client.GetBatchFlashInput();
+      var input = client.GetBatchFlashFixedTemperaturePressureInput();
       input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.Units = "C(In,Massfraction);C(Out,Massfraction);T(In,Celsius);T(Out,Celsius);P(In,Bar);P(Out,Bar);H(In,kJ/Kg);H(Out,kJ/Kg);S(In,kJ/(Kg Kelvin));S(Out,kJ/(Kg Kelvin));Cp(In,kJ/(Kg Kelvin));Cp(Out,kJ/(Kg Kelvin));Viscosity(In,centiPoise);Viscosity(Out,centiPoise);Surfacetension(In,N/m);Surfacetension(Out,N/m)";
-      input.FlashType = "Fixed Temperature/Pressure";
-      input.Points.Add(new ApiBatchFlashCalculationItem
+      input.Points.Add(new ApiBatchFlashFixedTemperaturePressureItem
       {
         Temperature = 200, //In Celcius
         Pressure = 25, //In Bar
@@ -62,7 +61,7 @@ namespace Equia.CSharp.BatchFlashSample
                 new() { Amount = 0.20 },
          ]
       });
-      input.Points.Add(new ApiBatchFlashCalculationItem
+      input.Points.Add(new ApiBatchFlashFixedTemperaturePressureItem
       {
         Temperature = 225, //In Celcius
         Pressure = 35, //In Bar

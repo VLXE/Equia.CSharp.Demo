@@ -21,7 +21,7 @@ namespace Equia.CSharp.PhaseDiagramSample
         var client = CreateClient();
         var input = CreateInput(client);
 
-        var result = await client.CallPhasediagramStandardAsync(input);
+        var result = await client.CallPhasediagramFixedCompositionAsync(input);
 
         if (result.Success && result.Curve is not null)
           PrintPhaseDiagramResult(result.Curve);
@@ -40,19 +40,19 @@ namespace Equia.CSharp.PhaseDiagramSample
       return new ApiEquiaClient(new HttpClient(), SharedSettings.ApiUrl, SharedSettings.AccessKey);
     }
 
-    static ApiPhasediagramCalculationInput CreateInput(ApiEquiaClient client)
+    static ApiPhasediagramFixedCompositionInput CreateInput(ApiEquiaClient client)
     {
-      var input = client.GetPhasediagamStandardInput();
+      var input = client.GetPhasediagramFixedCompositionInput();
       input.Fluid = DemoFluid1_nHexane_Ethylene_HDPE7.GetFluid();
       input.SLE = true;
       input.SLVE = true;
       input.VLLE = true;
       input.Spinodal = false;
       input.Units = "C(In,Massfraction);C(Out,Massfraction);T(In,Celsius);T(Out,Celsius);P(In,Bar);P(Out,Bar);H(In,kJ/Kg);H(Out,kJ/Kg);S(In,kJ/(Kg Kelvin));S(Out,kJ/(Kg Kelvin));Cp(In,kJ/(Kg Kelvin));Cp(Out,kJ/(Kg Kelvin));Viscosity(In,centiPoise);Viscosity(Out,centiPoise);Surfacetension(In,N/m);Surfacetension(Out,N/m)";
-      input.Components = new List<ApiCalculationComposition> {
+      input.Components = [
                 new() { Amount = 0.78 },
                 new() { Amount = 0.02 },
-                new() { Amount = 0.2 } };
+                new() { Amount = 0.2 } ];
       return input;
     }
 
